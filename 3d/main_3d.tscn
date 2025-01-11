@@ -1,0 +1,92 @@
+[gd_scene load_steps=10 format=3 uid="uid://gosa4icto0dw"]
+
+[ext_resource type="Script" path="res://3d/player.gd" id="1_3sllc"]
+[ext_resource type="Script" path="res://3d/main_3d.gd" id="1_ihqg8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_skdnd"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5s3ht"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tm01k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yp3pa"]
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1vfa"]
+albedo_color = Color(0.27981, 0.57662, 0.0660696, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y720b"]
+material = SubResource("StandardMaterial3D_t1vfa")
+size = Vector3(4, 0.1, 4)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lehxp"]
+font_size = 48
+
+[node name="Main 3D" type="Node3D"]
+script = ExtResource("1_ihqg8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.957092, 0.289784, 0, -0.289784, 0.957092, 0, 1.89225, 5.95436)
+
+[node name="Player" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.14448, 0)
+physics_material_override = SubResource("PhysicsMaterial_skdnd")
+can_sleep = false
+lock_rotation = true
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_3sllc")
+move_speed = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_5s3ht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_tm01k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_yp3pa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("BoxMesh_y720b")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(0.933035, -0.359785, 0, 0.359785, 0.933035, 0, 0, 0, 1, 2.81107, 0.555611, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_yp3pa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_y720b")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="."]
+transform = Transform3D(0.669986, -0.742374, 0, 0.742374, 0.669986, 0, 0, 0, 1, 3.92199, 1.71814, 0)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3"]
+shape = SubResource("BoxShape3D_yp3pa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3"]
+mesh = SubResource("BoxMesh_y720b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.742678, 0.669649, 0, -0.669649, 0.742678, 0, 3.57932, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "On Floor"
+label_settings = SubResource("LabelSettings_lehxp")
+horizontal_alignment = 1

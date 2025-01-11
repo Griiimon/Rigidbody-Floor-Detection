@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvtp3lesvj2qy"]
+
+[ext_resource type="Script" path="res://2d/shape_drawer.gd" id="1_pckjw"]
+[ext_resource type="Script" path="res://2d/player.gd" id="1_sf2dr"]
+[ext_resource type="Script" path="res://2d/main_2d.gd" id="1_uey63"]
+[ext_resource type="Texture2D" uid="uid://4rsi3iqvoqyx" path="res://icon.svg" id="2_caslq"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5202r"]
+friction = 0.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_70wql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_48o2k"]
+size = Vector2(200, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4u5sm"]
+size = Vector2(100, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qinm1"]
+font_size = 48
+
+[node name="Main 2D" type="Node2D"]
+script = ExtResource("1_uey63")
+
+[node name="Player" type="RigidBody2D" parent="."]
+position = Vector2(362, 304)
+physics_material_override = SubResource("PhysicsMaterial_5202r")
+can_sleep = false
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_sf2dr")
+move_speed = 80.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_70wql")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.17, 0.245)
+texture = ExtResource("2_caslq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(406, 429)
+script = ExtResource("1_pckjw")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_48o2k")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(322, 410)
+rotation = 0.435976
+script = ExtResource("1_pckjw")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("RectangleShape2D_4u5sm")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(258, 361)
+rotation = 0.849162
+script = ExtResource("1_pckjw")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+shape = SubResource("RectangleShape2D_4u5sm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "On Floor"
+label_settings = SubResource("LabelSettings_qinm1")
+horizontal_alignment = 1
