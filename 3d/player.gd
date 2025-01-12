@@ -12,6 +12,7 @@ extends RigidBody3D
 
 
 @export var move_speed: float= 50.0
+@export var jump_strength: float= 5.0
 
 # maximum angle ( compared to up vector ) where the contact collider
 # is consider a floor
@@ -26,6 +27,11 @@ func _ready() -> void:
 	# convert the max_slope_angle into a value that works
 	# with the dot product
 	floor_dot_threshold= cos(deg_to_rad(max_slope_angle))
+
+
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_up") and is_on_floor:
+		apply_central_impulse(jump_strength * Vector3.UP)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
