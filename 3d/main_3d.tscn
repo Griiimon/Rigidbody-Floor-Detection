@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://gosa4icto0dw"]
 
-[ext_resource type="Script" path="res://3d/player.gd" id="1_3sllc"]
+[ext_resource type="Script" path="res://3d/player_3d.gd" id="1_3sllc"]
 [ext_resource type="Script" path="res://3d/main_3d.gd" id="1_ihqg8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_skdnd"]
